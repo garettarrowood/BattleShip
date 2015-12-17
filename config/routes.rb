@@ -1,16 +1,13 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  root 'user#index'
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  unauthenticated do
+    root to: 'application#home_page', as: :unauth_root
+  end
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  authenticate :user do
+  end
 
   # Example resource route with options:
   #   resources :products do
